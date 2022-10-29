@@ -18,6 +18,9 @@ public class event {
     @GeneratedValue
     public int eventId;
     public String eventName;
+    @OneToMany
+    public List<Comment> comments;
+
      @ManyToOne
     public User postedByUser;
 

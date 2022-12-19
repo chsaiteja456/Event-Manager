@@ -10,4 +10,5 @@ import java.util.List;
 @Component
 public interface eventRepo extends JpaRepository<event,Integer> {
     public List<event> findByPostedByUser(User u);
+    public event findByEventId(int id);
 }

@@ -8,10 +8,25 @@ import javax.persistence.Id;
 @Component
 @Entity
 public class Department {
-
+    @Id
     @GeneratedValue
     public int DepartmentId;
-    @Id
+
     public String departmentName;
 
+    public int getDepartmentId() {
+        return DepartmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        DepartmentId = departmentId;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
 }

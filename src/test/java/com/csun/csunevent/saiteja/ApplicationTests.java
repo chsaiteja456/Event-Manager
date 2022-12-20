@@ -2,10 +2,7 @@ package com.csun.csunevent.saiteja;
 
 import com.csun.csunevent.saiteja.Repository.CommentsRepo;
 import com.csun.csunevent.saiteja.Repository.UserRepo;
-import com.csun.csunevent.saiteja.models.Comment;
-import com.csun.csunevent.saiteja.models.Department;
-import com.csun.csunevent.saiteja.models.User;
-import com.csun.csunevent.saiteja.models.event;
+import com.csun.csunevent.saiteja.models.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +28,8 @@ public class ApplicationTests {
 		this.eventRepo = eventRepo;
 		this.userRepo = userRepo;
 	}*/
-
+@Autowired
+public com.csun.csunevent.saiteja.Repository.pollRepo pollRepo;
 	@Autowired
 	public CommentsRepo commentsRepo;
 	@Autowired
@@ -60,4 +58,31 @@ public class ApplicationTests {
 		event expected=new event(7,"freshers pary", listOfComm,u,"free food","university union",listOfDept);
 assertEquals(expected,event7);
 	}
+
+	@Test
+	public void isCommentExitsById() {
+		User u=userRepo.findByEmailId("saiteja@gmail.com");
+
+		Comment expected=new Comment(1,u,"hi");
+		assertEquals(expected,commentsRepo.getById(1));
+	}
+
+
+	@Test
+	public void isPollExitsById() {
+		//User u=userRepo.findByEmailId("saiteja@gmail.com");
+		poll p=new poll(1,"online classes","Is online classes OK for every One for this spring semester",0,0,0);
+
+		//Comment expected=new Comment(1,u,"hi");
+		assertEquals(p,pollRepo.getById(1));
+	}
+
+	@Test
+	public void getVotesCount() {
+		//User u=userRepo.findByEmailId("saiteja@gmail.com");
+		poll p=new poll(1,"online classes","Is online classes OK for every One for this spring semester",0,0,0);
+int totalVotes=p.getTotalVoteCount();
+		assertEquals(totalVotes,pollRepo.getById(1).getTotalVoteCount());
+	}
+
 }
